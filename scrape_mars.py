@@ -7,8 +7,6 @@
 #make the imports
 from bs4 import BeautifulSoup as bs
 import pandas as pd
-import requests
-import pymongo
 from splinter import Browser
 from webdriver_manager.chrome import ChromeDriverManager
 
@@ -29,11 +27,11 @@ def scrape():
     hemisphere_image_urls =  hemispheres(browser)
     
     data = {
-        "Latest News Title" : news_title,
-        "News Paragraph" : news_p,
-        "Featured Image URL" : full_image_url,
-        "Mars Facts html" : html_mars_facts,
-        "Hemisphere URLS" : hemisphere_image_urls
+        "latest_news_title" : news_title,
+        "news_paragraph" : news_p,
+        "featured_image_url" : full_image_url,
+        "mars_facts_html" : html_mars_facts,
+        "hemisphere_urls" : hemisphere_image_urls
     }
     print(data)
     browser.quit()
