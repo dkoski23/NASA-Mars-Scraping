@@ -1,2 +1,10 @@
 # web-scraping-challenge
 Mission to Mars
+
+This task uses a combination of Python, html, Pandas, Splinter, Beautiful Soup, MongoDB, and Flask to accomplish its aims. In brief, data from the latest Mars news, feautured Mars image, Mars statistics, and hemisphere visuals are scraped from NASA's Mars website before the data is extracted to a MongoDB and visually represented via a Flask app to appear similar to a webpage.
+
+The mission_to_mars.ipynb notebook uses Pandas/Python/Splinter/Beautiful Soup to extract the above-mentioned data from the four webpages (and converts the Mars stats to html). It is divided into four primary section: one for each webpage. In order to find which data to scrape it was necessary to use the right-click inspect method available via Chrome, and dive deeper and deeper into the html via Beautiful Soup and Splinter.
+
+The scrape_mars.py file does essentially the same thing as the notebook, but must be reformatted in order to work with the app.py necessary for making the Flask app. In order to do this, I created four different functions for each Mars webpage (or type of data, sometimes several pages are scraped), and tied all of those functions into one all-encompassing function called scrape(). The function scrape() could then be called upon by the app.py file in order to run all of the code used in the Jupyter Notebook. Flask and Jupyter can't be directly run together since they both rely on the use of a server.
+
+When Flask is run the app.py file connects to and runs scrape_mars.py, sends the data into a MongoDB, and renders the data into the index.html file. index.html proceeds to format the data at  localhost 5000. This creates a coherent visualisation of all the data scraped (you can see photos of my app in the Screenshots folder). Lastly, there is a button on the app page to scrape all the websites again in order to see if any information has been updated/changed. This was a challenging project, but figuring it out and completing it were quite satisfying.
