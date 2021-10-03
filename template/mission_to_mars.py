@@ -21,9 +21,10 @@ def scrape():
     news_title, news_p = mars_latest_news(browser)
     
     data = {
-        "news_title" = news_title,
-        "news_paragraph" = news_p
+        "news_title" : news_title,
+        "news_paragraph" : news_p
     }
+    print(data)
     browser.quit()
     return data
     
@@ -49,107 +50,107 @@ def mars_latest_news(browser):
 
 # ## Featured Image Scraping
 
-def featured_image(browser):
-    image_url = "https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/index.html"
+# def featured_image(browser):
+#     image_url = "https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/index.html"
 
-    browser.visit(image_url)
-    html = browser.html
-    soup = bs(html, 'html.parser')
-    image_full = soup.find('img', class_="headerimage fade-in")['src']
-    image_full
-
-
-
-    full_image_url = "https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/" + image_full
+#     browser.visit(image_url)
+#     html = browser.html
+#     soup = bs(html, 'html.parser')
+#     image_full = soup.find('img', class_="headerimage fade-in")['src']
+#     image_full
 
 
 
-    print(full_image_url)
-    return full_image_url
-
-
-# ## On to Mars Facts
-
-import os, ssl
-if (not os.environ.get('PYTHONHTTPSVERIFY', '') and
-getattr(ssl, '_create_unverified_context', None)):
-    ssl._create_default_https_context = ssl._create_unverified_context
+#     full_image_url = "https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/" + image_full
 
 
 
-mars_facts_df = pd.read_html('https://space-facts.com/mars/')
+#     print(full_image_url)
+#     return full_image_url
 
 
-#this is not a dataframe at the moment, it is a big list, but the
-#first item has the values desired for this project
-print(mars_facts_df)
+# # ## On to Mars Facts
+
+# import os, ssl
+# if (not os.environ.get('PYTHONHTTPSVERIFY', '') and
+# getattr(ssl, '_create_unverified_context', None)):
+#     ssl._create_default_https_context = ssl._create_unverified_context
 
 
-mars_facts_df = mars_facts_df[0]
+
+# mars_facts_df = pd.read_html('https://space-facts.com/mars/')
 
 
-print(mars_facts_df)
+# #this is not a dataframe at the moment, it is a big list, but the
+# #first item has the values desired for this project
+# print(mars_facts_df)
 
 
-#name the columns
-mars_facts_df.columns=['Statistic', "Value"]
-
-(mars_facts_df)
+# mars_facts_df = mars_facts_df[0]
 
 
-html_mars_facts = mars_facts_df.to_html()
-print(html_mars_facts)
+# print(mars_facts_df)
 
 
-print(type(html_mars_facts))
+# #name the columns
+# mars_facts_df.columns=['Statistic', "Value"]
+
+# (mars_facts_df)
 
 
-# ## Onto Hemispheres
-def hemispheres(browser):
+# html_mars_facts = mars_facts_df.to_html()
+# print(html_mars_facts)
+
+
+# print(type(html_mars_facts))
+
+
+# # ## Onto Hemispheres
+# def hemispheres(browser):
     
-    hemis_url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
-    browser.visit(hemis_url)
+#     hemis_url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
+#     browser.visit(hemis_url)
 
-    html = browser.html
-    soup = bs(html, 'html.parser')
-    links_from_home = []
+#     html = browser.html
+#     soup = bs(html, 'html.parser')
+#     links_from_home = []
     
-    list_h = soup.find_all('a', class_='itemLink product-item')
-    only_one = []
+#     list_h = soup.find_all('a', class_='itemLink product-item')
+#     only_one = []
 
 
-    for link in list_h:
-        #print(link)
-        #print('--------------------')
-        if link['href'] not in only_one:
-            #print(link['href'])
-            only_one.append(link['href'])
+#     for link in list_h:
+#         #print(link)
+#         #print('--------------------')
+#         if link['href'] not in only_one:
+#             #print(link['href'])
+#             only_one.append(link['href'])
 
-    print(only_one)
+#     print(only_one)
 
-    part_one = 'https://astrogeology.usgs.gov'
-    for link in only_one:
-        links_from_home.append(part_one + link)
-    links_from_home
-    hemisphere_image_urls = []
+#     part_one = 'https://astrogeology.usgs.gov'
+#     for link in only_one:
+#         links_from_home.append(part_one + link)
+#     links_from_home
+#     hemisphere_image_urls = []
 
-    for link in link_from_home:
-        hemisphere_dict = {}
-        browser.visit(link)
-        html = browser.html
-        soup = bs(html, 'html.parser')
-        test = browser.find_by_css('h2.title').text
-        print(test)
-        hemisphere_dict['title'] = test
-        image_url = soup.find('img', class_='wide-image')['src']
-        image_url = part_one + image_url
-        print(image_url)
-        hemisphere_dict['img_url'] = image_url
-        hemisphere_image_urls.append(hemisphere_dict)
+#     for link in link_from_home:
+#         hemisphere_dict = {}
+#         browser.visit(link)
+#         html = browser.html
+#         soup = bs(html, 'html.parser')
+#         test = browser.find_by_css('h2.title').text
+#         print(test)
+#         hemisphere_dict['title'] = test
+#         image_url = soup.find('img', class_='wide-image')['src']
+#         image_url = part_one + image_url
+#         print(image_url)
+#         hemisphere_dict['img_url'] = image_url
+#         hemisphere_image_urls.append(hemisphere_dict)
 
 
-    print(hemisphere_image_urls)
-    return hemisphere_image_urls
+#     print(hemisphere_image_urls)
+#     return hemisphere_image_urls
 
 
 
