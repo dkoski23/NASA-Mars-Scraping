@@ -1,7 +1,7 @@
 # web-scraping-challenge
 Mission to Mars
 
-This task uses a combination of Python, html, Pandas, Splinter, Beautiful Soup, MongoDB, and Flask to accomplish its aims. In brief, data from the latest Mars news, feautured Mars image, Mars statistics, and hemisphere visuals are scraped from NASA's Mars website before the data is extracted to a MongoDB and visually represented via a Flask app to appear similar to a webpage.
+This task uses a combination of Python, html, Pandas, Splinter, Beautiful Soup, MongoDB, and Flask to accomplish its aims. In brief, data from the latest Mars news, featured Mars image, Mars statistics, and hemisphere visuals are scraped from NASA's Mars website before the data is extracted to a MongoDB and visually represented via a Flask app to appear similar to a webpage.
 
 The mission_to_mars.ipynb notebook uses Pandas/Python/Splinter/Beautiful Soup to extract the above-mentioned data from the four webpages (and converts the Mars stats to html). It is divided into four primary sections, with one for each webpage. In order to find which data to scrape it was necessary to begin using the simple right-click inspect method available via Chrome and dive deeper into the html via Beautiful Soup and Splinter.
 
